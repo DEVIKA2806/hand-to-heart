@@ -36,8 +36,10 @@ if (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'your_jwt_secret_here'
 }
 
 // --- MIDDLEWARE ---
-app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:5000', credentials: true }));
-app.use(express.json());
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || 'http://localhost:5501',
+    credentials: true
+}));app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
