@@ -12,7 +12,7 @@ function logoutReseller() {
 }
 
 const safeGetElement = (id) => document.getElementById(id);
-const BACKEND_URL = ''; // Add your backend URL here if needed
+const BACKEND_URL = 'https://hand-to-heart-fgbw.onrender.com'; // Add your backend URL here if needed
 
 // *****************************************************************
 // 1. GLOBAL STATE AND CART FUNCTIONS
@@ -483,7 +483,7 @@ function handleSellerRegistration(e) {
     sellerMsg.style.color = "orange";
     sellerMsg.textContent = "Submitting application...";
 
-    fetch('/api/seller/register', {
+    fetch(BACKEND_URL +'/api/seller/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, phone, business, products, password })
@@ -743,7 +743,7 @@ function resellerLogin() {
         return;
     }
 
-    fetch('/api/auth/reseller-login', { 
+    fetch(BACKEND_URL + '/api/auth/reseller-login', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -812,7 +812,7 @@ async function resellerRegister() {
     }
 
     try {
-        const res = await fetch('/api/auth/reseller-register', {
+        const res = await fetch(BACKEND_URL + '/api/auth/reseller-register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, password: p1 })
