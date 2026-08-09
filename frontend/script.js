@@ -459,14 +459,7 @@ function openSeller() {
             
             <button type="button" class="close-btn" onclick="closeSeller()">Close</button>
         `;
-    } else {
-        modalCard.innerHTML = registrationFormHtml;
-        setTimeout(() => {
-            const form = safeGetElement('sellerForm');
-            if (form) form.addEventListener('submit', handleSellerRegistration);
-        }, 0);
-    }
-    
+    } 
     sellerModal.style.display = 'flex';
 }
 
