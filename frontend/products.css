@@ -207,33 +207,6 @@ button{
     transform:translateY(-2px);
 }
 
-.user-avatar{
-    width:46px;
-    height:46px;
-    min-width:46px;
-    border-radius:50%;
-    background:#627B34;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:#fff;
-    font-size:18px;
-    font-weight:600;
-    cursor:pointer;
-    overflow:hidden;
-    flex-shrink:0;
-}
-
-#user-initial{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    height:100%;
-    margin:0;
-    padding:0;
-}
-
 .user-menu-wrap{
     position:relative;
     display:flex;
@@ -288,6 +261,46 @@ button{
 
 .profile-dropdown.show{
     display:block;
+}
+
+.dropdown-header{
+    padding:18px;
+    border-bottom:1px solid var(--border);
+}
+
+.dropdown-header p{
+    font-weight:600;
+    margin-bottom:4px;
+    color:var(--text);
+}
+
+.dropdown-header small{
+    color:var(--text-light);
+}
+
+.profile-dropdown ul{
+    list-style:none;
+}
+
+.profile-dropdown ul li a{
+    display:block;
+    padding:14px 20px;
+    color:var(--text);
+    transition:.25s;
+}
+
+.profile-dropdown ul li:hover{
+    background:#FFF5EF;
+}
+
+.profile-dropdown ul li:hover a{
+    color:var(--primary);
+}
+
+.profile-dropdown .divider{
+    height:1px;
+    background:var(--border);
+    margin:4px 0;
 }
 
 /*=========================================

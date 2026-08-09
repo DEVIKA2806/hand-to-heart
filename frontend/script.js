@@ -168,7 +168,7 @@ function checkLoginStatus() {
     if (user) {
         // --- USER IS LOGGED IN ---
         if(guestBtn) guestBtn.style.display = 'none'; 
-        if(userMenu) userMenu.style.display = 'block'; 
+        if(userMenu) userMenu.style.display = 'flex';
 
         // Populate the Menu
         const nameEl = document.getElementById('menu-name');
@@ -188,7 +188,7 @@ function checkLoginStatus() {
 // Toggle Profile Dropdown
 function toggleUserMenu() {
     const menu = document.getElementById('user-dropdown');
-    if (menu) menu.classList.toggle('active');
+    if (menu) menu.classList.toggle('show');
 }
 
 // Unified Logout Function
@@ -424,8 +424,7 @@ function openSeller() {
 
     const modalCard = sellerModal.querySelector('.seller-card, .modal-card');
     if (!modalCard) return;
-
-    const registrationFormHtml = `
+    modalCard.innerHTML = `
         <h2>Join as Seller</h2>
         <form id="sellerForm">
             <input type="text" id="sellerName" placeholder="Name" required>
@@ -442,6 +441,10 @@ function openSeller() {
         <div id="sellerMsg"></div>
     `;
 
+    setTimeout(() => {
+        const form = safeGetElement('sellerForm');
+        if (form) form.addEventListener('submit', handleSellerRegistration);
+    }, 0);
     if (user && user.role === 'user') {
         modalCard.innerHTML = `
             <h2>Seller Access Policy</h2>
@@ -891,7 +894,7 @@ window.addEventListener('click', function(e) {
     const container = document.getElementById('user-menu-container');
     const menu = document.getElementById('user-dropdown');
     if (container && !container.contains(e.target) && menu) {
-        menu.classList.remove('active');
+        menu.classList.remove('show');
     }
 });
 // *****************************************************************

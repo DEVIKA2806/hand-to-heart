@@ -225,25 +225,61 @@ button{
 /* ===============================
         USER DROPDOWN
 ============================== */
-.dropdown{
+.user-menu-wrap{
     position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.dropdown-menu{
+.user-avatar{
+    width:44px;
+    height:44px;
+    min-width:44px;
+    border-radius:50%;
+    background:var(--secondary);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.user-avatar:hover{
+    background:#435524;
+    transform:translateY(-2px);
+}
+
+#user-initial{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    line-height:1;
+}
+
+.profile-dropdown{
     position:absolute;
     top:115%;
     right:0;
-    min-width:220px;
+    min-width:240px;
     background:#fff;
     border-radius:16px;
     border:1px solid var(--border);
     box-shadow:0 15px 35px rgba(0,0,0,.08);
     display:none;
     overflow:hidden;
-    padding:8px 0;
+    z-index:9999;
 }
 
-.dropdown.open .dropdown-menu{
+.profile-dropdown.show{
     display:block;
     animation:dropdownFade .25s ease;
 }
@@ -259,11 +295,27 @@ button{
     }
 }
 
-.dropdown-menu li{
-    list-style:none;
+.dropdown-header{
+    padding:16px 18px;
+    border-bottom:1px solid var(--border);
 }
 
-.dropdown-menu li a{
+.dropdown-header p{
+    font-weight:600;
+    margin-bottom:4px;
+    color:var(--text);
+}
+
+.dropdown-header small{
+    color:var(--text-light);
+}
+
+.profile-dropdown ul{
+    list-style:none;
+    padding:8px 0;
+}
+
+.profile-dropdown ul li a{
     display:block;
     padding:13px 18px;
     color:var(--text);
@@ -271,16 +323,22 @@ button{
     transition:.25s;
 }
 
-.dropdown-menu li a::after{
+.profile-dropdown ul li a::after{
     display:none;
 }
 
-.dropdown-menu li:hover{
+.profile-dropdown ul li:hover{
     background:#FFF7F3;
 }
 
-.dropdown-menu li:hover a{
+.profile-dropdown ul li:hover a{
     color:var(--primary);
+}
+
+.profile-dropdown .divider{
+    height:1px;
+    background:var(--border);
+    margin:4px 0;
 }
 
 /* Mobile */

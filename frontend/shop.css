@@ -329,6 +329,45 @@ section{
 /*==============================
     PROFILE DROPDOWN
 ==============================*/
+.user-menu-wrap{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.user-avatar{
+    width:46px;
+    height:46px;
+    min-width:46px;
+    border-radius:50%;
+    background:var(--secondary);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.user-avatar:hover{
+    background:var(--secondary-dark);
+}
+
+#user-initial{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    line-height:1;
+}
+
 .profile-dropdown{
     position:absolute;
     top:75px;
@@ -340,6 +379,10 @@ section{
     box-shadow:0 20px 40px rgba(0,0,0,.08);
     overflow:hidden;
     display:none;
+}
+
+.profile-dropdown.show{
+    display:block;
 }
 
 .dropdown-header{
@@ -372,6 +415,12 @@ section{
 
 .profile-dropdown ul li:hover a{
     color:var(--primary);
+}
+
+.profile-dropdown .divider{
+    height:1px;
+    background:var(--border);
+    margin:4px 0;
 }
 
 /*==============================
@@ -1030,8 +1079,8 @@ section{
     box-shadow:0 0 0 4px rgba(166,90,58,.10);
 }
 
-/* Primary action button (e.g. Register / Login submit) */
-.seller-card button{
+/* Submit */
+.seller-submit{
     width:100%;
     background:var(--primary);
     color:#fff;
@@ -1041,41 +1090,25 @@ section{
     font-size:16px;
     font-weight:600;
     transition:.3s;
-    margin-bottom:12px;
-    cursor:pointer;
 }
 
-.seller-card button:hover{
+.seller-submit:hover{
     background:var(--primary-dark);
-    transform:translateY(-2px);
 }
 
-/* Secondary / Close button */
-.seller-card .close-btn{
-    background:#fff;
-    color:var(--primary);
-    border:2px solid var(--primary);
+/* Close */
+.seller-close{
+    width:100%;
+    margin-top:12px;
+    background:#F3F3F3;
+    color:#444;
+    border:none;
+    padding:14px;
+    border-radius:14px;
 }
 
-.seller-card .close-btn:hover{
-    background:var(--primary);
-    color:#fff;
-    transform:none;
-}
-
-/* Inline validation / error text */
-.seller-card .error{
-    color:#DC2626;
-    font-size:.9rem;
-    margin-bottom:15px;
-}
-
-/* Registration feedback message */
-.seller-card #sellerMsg{
-    text-align:center;
-    margin-top:14px;
-    font-size:.95rem;
-    font-weight:600;
+.seller-close:hover{
+    background:#E4E4E4;
 }
 
 /* ======================================================
