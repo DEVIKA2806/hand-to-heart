@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand2Heart - Shop Now</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="shop-body">
+    <div class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-dark">HAND to</span>
+            <span class="logo-green">
+                HEART
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </span>
+        </a>
+        <div class="nav-items">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="#">Featured</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <div class="shop-search"><i class="fa-solid fa-magnifying-glass"></i></div>
+
+            <div class="cart" onclick="window.location.href='cart.html'">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+            </div>
+
+            <div id="guest-btn" class="login" onclick="openLogin()">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div id="user-menu-container" class="user-menu-wrap" style="display: none;">
+                <div class="user-avatar" onclick="toggleUserMenu()">
+                    <span id="user-initial">U</span>
+                </div>
+                
+                <div id="user-dropdown" class="profile-dropdown">
+                    <div class="dropdown-header">
+                        <p id="menu-name">User Name</p>
+                        <small id="menu-email">user@email.com</small>
+                    </div>
+                    <ul>
+                        <li><a href="profile.html"><i class="fa-solid fa-id-badge"></i> My Profile</a></li>
+                        <li><a href="orders.html"><i class="fa-solid fa-box-open"></i> Order History</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" onclick="logoutUser()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sell-btn">
+                <button class="btn btn-outline" onclick="openSeller()">
+                    Join as Seller <i class="fa-solid fa-handshake-simple"></i>
+                </button>
+            </div>
+        </div>
+    </div>    
+    <div class="category-section">
+        <div class="section-title">
+            <h2>Explore Categories</h2>
+            <p>Discover handcrafted collections created by talented artisans across India.</p>
+        </div>
+        <div class="shop-content">
+            <div class="body-items">
+                <a href="saree.html">
+                    <div class="category-image">
+                        <img src="../assets/shop-img-1.jpg" alt="Saree">
+                        <span class="category-badge">Traditional</span>
+                    </div>
+                    <div class="category-content">
+                        <h3>Saree Collection</h3>
+                        <p>Handwoven sarees crafted with timeless Indian traditions.</p>
+                        <span class="explore-link">Explore Collection<i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+            <div class="body-items">
+                <a href="artifacts.html">
+                    <div class="category-image">
+                        <img src="../assets/shop-img-2.jpg" alt="Artifacts">
+                        <span class="category-badge">Handmade</span>
+                    </div>
+                    <div class="category-content">
+                        <h3>Handicrafts</h3>
+                        <p>Beautiful handmade décor and artisan creations for your home.</p>
+                        <span class="explore-link">Explore Collection<i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+            <div class="body-items">
+                <a href="lifestyle.html">
+                    <div class="category-image">
+                        <img src="../assets/shop-img-3.jpg" alt="Lifestyle">
+                        <span class="category-badge">Organic</span>
+                    </div>
+                    <div class="category-content">
+                        <h3>Lifestyle Picks</h3>
+                        <p>Curated lifestyle essentials inspired by Indian craftsmanship.</p>
+                        <span class="explore-link">Explore Collection<i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+                WHY CHOOSE HAND TO HEART
+    =========================================== -->
+    <section class="why-us">
+        <div class="section-title">
+            <h2>Why Choose Hand to Heart?</h2>
+            <p>
+                Every purchase supports skilled artisans, sustainable practices,
+                and the preservation of India's rich craftsmanship.
+            </p>
+        </div>
+        <div class="why-container">
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                </div>
+                <h3>Handmade Products</h3>
+                <p>
+                    Carefully crafted by talented artisans using traditional
+                    techniques and high-quality materials.
+                </p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <h3>Support Local Artisans</h3>
+                <p>
+                    Every purchase directly contributes to empowering local
+                    communities and self-help groups.
+                </p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
+                <h3>Sustainable Shopping</h3>
+                <p>
+                    Promote eco-friendly living by choosing handmade and
+                    responsibly sourced products.
+                </p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fa-solid fa-shield-heart"></i>
+                </div>
+                <h3>Trusted Marketplace</h3>
+                <p>
+                    Secure shopping experience connecting buyers directly with
+                    verified sellers.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+                FEATURED COLLECTION
+    =========================================== -->
+    <section class="featured-section">
+        <div class="section-title">
+            <h2>Featured Collections</h2>
+            <p>
+                Discover some of our most loved handcrafted products.
+            </p>
+        </div>
+        <div class="featured-products">
+            <a href="saree.html" class="featured-card">
+                <img src="../assets/paithani-img.jpg">
+                <div class="featured-content">
+                    <span>Sarees</span>
+                    <h3>Paithani Collection</h3>
+                </div>
+            </a>
+            <a href="artifacts.html" class="featured-card">
+                <img src="../assets/wooden-img.jpg">
+                <div class="featured-content">
+                    <span>Handicrafts</span>
+                    <h3>Wood Craft</h3>
+                </div>
+            </a>
+            <a href="lifestyle.html" class="featured-card">
+                <img src="../assets/rose-img.jpg">
+                <div class="featured-content">
+                    <span>Lifestyle</span>
+                    <h3>Natural Incense</h3>
+                </div>
+            </a>
+            <a href="artifacts.html" class="featured-card">
+                <img src="../assets/pots-img.jpg">
+                <div class="featured-content">
+                    <span>Home Decor</span>
+                    <h3>Clay Pottery</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div id="loginModal" class="login-modal">
+        <div class="login-card">
+            <h3>Login</h3>
+            <input type="email" id="modalUsername" placeholder="Email" />
+            <input type="password" id="modalPassword" placeholder="Password" />
+            <div id="modalError" class="error"></div>
+            <button onclick="validateModalLogin()">Login</button>
+            <button class="sign-in-btn" onclick="window.location.href='register.html'; closeLogin()">Sign In</button>
+            <button class="close-btn" onclick="closeLogin()">Close</button>
+        </div>
+    </div>
+
+    <div id="sellerModal" class="seller-modal">
+        <div class="seller-card">
+            <h2>Join as Seller</h2>
+            <form id="sellerForm">
+                <input type="text" id="sellerName" placeholder="Name" required>
+                <input type="email" id="sellerEmail" placeholder="Email" required>
+                <input type="tel" id="sellerPhone" placeholder="Phone" required>
+                <input type="text" id="sellerBusiness" placeholder="Business Name" required>
+                <textarea placeholder="Products (e.g., Saree, Art, etc.)" class="textarea"></textarea>
+                <input type="password" id="sellerPassword" placeholder="Create Password" required>
+                
+                <button type="submit" id="sellerRegisterBtn">Register</button>
+                
+                <button type="button" class="btn-seller-shortcut" onclick="openSellerLogin()">
+                    Already a Seller? Log In
+                </button>
+
+                <button type="button" class="close-btn" onclick="closeSeller()">Close</button>
+            </form>
+            <div id="sellerMsg"></div>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="login-modal">
+        <div class="login-card">
+            <div id="checkoutForm"></div>
+        </div>
+    </div>
+
+    <div id="cartModal" class="login-modal">
+        <div class="modal-card">
+            </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We aim to connect sellers and buyers through a simple and elegant platform. 
+                <a href="about.html">Learn more →</a>
+            </p>
+            </div>
+
+            <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="shop-now.html">Shop Now</a></li>
+                <li><a href="#" onclick="openSeller()">Join as Seller</a></li>
+                <li><a href="#" onclick="openContact()">Contact Us</a></li>
+            </ul>
+            </div>
+
+            <div class="footer-section">
+            <h3>Stay Updated</h3>
+            <form id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+                <p id="newsletterMsg"></p>
+            </form>
+            </div>
+
+            <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+            </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Hand2Heart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

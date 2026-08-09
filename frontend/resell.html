@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand2Heart - Resell Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="resell-page">
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-dark">HAND to</span>
+            <span class="logo-green">
+                HEART
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </span>
+        </a>
+
+        <div class="nav-right">
+            <a href="index.html" class="home">Home</a>
+
+            <button class="btn btn-green-outline btn-sm resellerLogin" onclick="joinReseller()">
+            Join as Reseller
+            </button>
+
+            <div class="nav-right">
+                <div class="cart" onclick="window.location.href='cart.html'">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-count">0</span>
+                </div>
+                <div class="login" onclick="openLogin()"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="resell-container">
+        <aside class="filters">
+            <input type="text" id="search" placeholder="Search">
+
+            <h4>Category</h4>
+            <label><input type="checkbox" value="Saree Collection"> Saree</label>
+            <label><input type="checkbox" value="Artifacts Collection"> Artifacts</label>
+            <label><input type="checkbox" value="Lifestyle Picks"> Lifestyle</label>
+
+            <h4>Item Type</h4>
+            <label><input type="checkbox" value="Second Hand"> Second Hand</label>
+            <label><input type="checkbox" value="New"> New</label>
+        </aside>
+
+        <section id="resellItems">
+            <main class="resell-main">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="product-grid">
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/bandhani1-img.jpg" class="card-img-top" alt="Leheriya Bandhani Saree">
+                        <div class="card-body">
+                            <h5 class="card-title">Leheriya Bandhani</h5>
+                            <p class="card-text">A vibrant tie-dye saree combining wave-like 'Leheriya' stripes and intricate 'Bandhani' dot work.</p>
+                            <p class="fw-bold">₹6,500</p>
+                            <button class="btn-green" data-product-id="bandhani1" data-title="Bandhani Saree" data-price="6500" data-image-url="../assets/bandhani1-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/leather1-img.jpg" class="card-img-top" alt="Leather Coin Pouch">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Coin Pouch</h5>
+                            <p class="card-text">A compact and durable pouch, handcrafted from genuine leather to keep your coins secure.</p>
+                            <p class="fw-bold">₹499</p>
+                            <button class="btn-green" data-product-id="leatherpouch1" data-title="Leather Coin Pouch" data-price="499" data-image-url="../assets/leather1-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/leather2-img.jpg" class="card-img-top" alt="Leather Cross-body Bag">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Cross-body Bag</h5>
+                            <p class="card-text">A stylish and functional bag, handcrafted from genuine leather for everyday use.</p>
+                            <p class="fw-bold">₹999</p>
+                            <button class="btn-green" data-product-id="leatherbag2" data-title="Leather Cross-body Bag" data-price="999" data-image-url="../assets/leather2-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/kanjivaram1-img.jpg" class="card-img-top" alt="Checks & Stripes Kanjivaram Saree">
+                        <div class="card-body">
+                            <h5 class="card-title">Kanjivaram</h5>
+                            <p class="card-text">A timeless Kanjivaram featuring a classic combination of woven checks and stripes.</p>
+                            <p class="fw-bold">₹8,200</p>
+                            <button class="btn-green" data-product-id="kanjivaram1" data-title="Kanjivaram Saree" data-price="8200" data-image-url="../assets/kanjivaram1-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/paithani1-img.jpg" class="card-img-top" alt="Saree">
+                        <div class="card-body">
+                            <h5 class="card-title">Paithani</h5>
+                            <p class="card-text">Handwoven silk saree with a signature peacock-designed pallu.</p>
+                            <p class="fw-bold">₹8,200</p>
+                            <button class="btn-green" data-product-id="paithani1" data-title="Paithani Saree" data-price="8200" data-image-url="../assets/paithani1-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/shawl1-img.jpg" class="card-img-top" alt="Jamawar Shawl">
+                        <div class="card-body">
+                            <h5 class="card-title">Shawl</h5>
+                            <p class="card-text">An opulent Jamawar shawl, renowned for its intricate paisley motifs and rich texture.</p>
+                            <p class="fw-bold">₹1,499</p>
+                            <button class="btn-green" data-product-id="shawl1" data-title="Jamawar Shawl" data-price="1499" data-image-url="../assets/shawl1-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/bandhani2-img.jpg" class="card-img-top" alt="Jhankaar Bandhani Saree">
+                        <div class="card-body">
+                            <h5 class="card-title">Bandhani</h5>
+                            <p class="card-text">A luxurious Bandhani featuring extremely fine and dense tie-dye patterns for a shimmering effect.</p>
+                            <p class="fw-bold">₹7,800</p>
+                            <button class="btn-green" data-product-id="bandhani2" data-title="Bandhani Saree" data-price="7800" data-image-url="../assets/bandhani2-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="../assets/sandal-img.jpg" class="card-img-top" alt="Sandalwood Agarbatti">
+                            <div class="card-body">
+                            <h5 class="card-title">Sandalwood Agarbatti</h5>
+                            <p class="card-text">Experience the calming, woody scent of traditional sandalwood incense, ideal for creating a peaceful ambiance.</p>
+                            <p class="fw-bold">₹299</p>
+                            <button class="btn-green" data-product-id="sandalwoodagarbatti1" data-title="Sandalwood Agarbatti" data-price="299" data-image-url="../assets/sandal-img.jpg">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/patola1-img.jpg" class="card-img-top" alt="Patan Patola Saree">
+                        <div class="card-body">
+                            <h5 class="card-title">Patola</h5>
+                            <p class="card-text">An heirloom silk saree from Patan, woven with the complex double ikat technique.</p>
+                            <p class="fw-bold">₹8,500</p>
+                            <button class="btn-green" data-product-id="patola1" data-title="Patola Saree" data-price="8500" data-image-url="../assets/patola1-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/kanjivaram2-img.jpg" class="card-img-top" alt="Plain Body Kanjivaram Saree">
+                        <div class="card-body">
+                            <h5 class="card-title">Kanjivaram</h5>
+                            <p class="card-text">A classic Kanjivaram with an elegant body beautifully contrasted by an elaborately woven pallu.</p>
+                            <p class="fw-bold">₹10,500</p>
+                            <button class="btn-green" data-product-id="kanjivaram2" data-title="Kanjivaram Saree" data-price="10500" data-image-url="../assets/kanjivaram2-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                        <img src="../assets/seashell1-img.jpg" class="card-img-top" alt="Seashell Earrings">
+                        <div class="card-body">
+                            <h5 class="card-title">Seashell Earrings</h5>
+                            <p class="card-text">Elegant earrings handcrafted from natural seashells, perfect for a beach-inspired look.</p>
+                            <p class="fw-bold">₹699</p>
+                            <button class="btn-green" data-product-id="seashell1" data-title="Seashell Earrings" data-price="699" data-image-url="../assets/seashell1-img.jpg">Add to Cart</button>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="../assets/foi2-img.jpg" class="card-img-top" alt="Pottery Vase">
+                            <div class="card-body">
+                            <h5 class="card-title">Red chilli(Laal Mirch)</h5>
+                            <p class="card-text">Hand-churned with love, this red chilli adds fiery flavor and authentic spice to every dish.<br>250 gm</p>
+                            <p class="fw-bold">₹299</p>
+                            <button class="btn-green" data-product-id="potteryvase1" data-title="Pottery Vase" data-price="699" data-image-url="../assets/clay4-img.jpg">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+    <div id="resellerModal" class="login-modal" style="display: none;">
+        <div class="login-card">
+            
+            <div id="resellerLoginFields">
+                <h3>Reseller Login</h3>
+                <input id="resEmail" type="email" placeholder="Reseller Email" required>
+                <input id="resPassword" type="password" placeholder="Password" required>
+                <button class="btn-green" onclick="resellerLogin()">Login</button>
+                <p style="margin-top:15px; font-size:0.9rem;">
+                    New? <a href="javascript:void(0)" onclick="toggleResellerAuth(true)" style="color:#4F6F52; font-weight:600;">Register as Reseller</a>
+                </p>
+            </div>
+
+            <div id="resellerRegisterFields" style="display: none;">
+                <h3>New Reseller Sign-Up</h3>
+                <input id="resRegName" type="text" placeholder="Full Name" required>
+                <input id="resRegEmail" type="email" placeholder="Email Address" required>
+                <input id="resRegPass1" type="password" placeholder="Create Password" required>
+                <input id="resRegPass2" type="password" placeholder="Confirm Password" required>
+                <button class="btn-green" onclick="resellerRegister()">Sign Up & Join</button>
+                <p style="margin-top:15px; font-size:0.9rem;">
+                    Already a Reseller? <a href="javascript:void(0)" onclick="toggleResellerAuth(false)" style="color:#4F6F52; font-weight:600;">Login</a>
+                </p>
+            </div>
+
+            <div id="resMsg" class="error" style="margin-top:10px; min-height: 20px;"></div>
+            <button class="close-btn" onclick="closeReseller()" style="margin-top:10px;">Close</button>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We aim to connect sellers and buyers through a simple and elegant platform. 
+                <a href="about.html">Learn more →</a>
+            </p>
+            </div>
+
+            <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="shop-now.html">Shop Now</a></li>
+                <li><a href="#" onclick="openSeller()">Join as Seller</a></li>
+                <li><a href="contact.html" onclick="openContact()">Contact Us</a></li>
+            </ul>
+            </div>
+
+            <div class="footer-section"> 
+            <h3>Stay Updated</h3>
+            <form id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+                <p id="newsletterMsg"></p>
+            </form>
+            </div>
+
+            <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+            </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Hand2Heart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+
+</body>
+</html>

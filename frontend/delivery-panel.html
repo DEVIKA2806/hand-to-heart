@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand2Heart - Delivery Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="shop-body">
+
+    <div class="delivery-container">
+        <h1>Delivery Management Panel</h1>
+        <p id="panelMessage">Accessing orders...</p>
+        
+        <div class="order-list" id="orderList">
+            </div>
+
+        <button onclick="fetchOrders()" style="background-color: #5cb85c; margin-top: 20px;">Refresh Pending Orders</button>
+        <button onclick="window.location.href='shop-now.html'" style="background-color: #3A4D39; margin-top: 10px;">Go back to main page</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial auth check, assuming 'admin' or 'delivery' role is required
+            const user = JSON.parse(localStorage.getItem('user'));
+            const token = localStorage.getItem('token');
+            const panelMessage = document.getElementById('panelMessage');
+
+            if (!token || !user || (user.role !== 'admin')) { // Assuming initial access via admin for simplicity
+                panelMessage.textContent = 'Access Denied. You must be an authorized delivery personnel or admin.';
+                panelMessage.style.color = 'red';
+                document.getElementById('orderList').innerHTML = '';
+            } else {
+                panelMessage.textContent = `Welcome, ${user.name}. Loading pending orders...`;
+                fetchOrders();
+            }
+        });
+
+        async function updateOrderStatus(orderId, buttonElement) {
+            const token = localStorage.getItem('token');
+            
+            buttonElement.disabled = true;
+            buttonElement.textContent = 'Delivering...';
+
+            try {
+                const response = await fetch(`/api/delivery/orders/${orderId}/delivered`, {
+                    method: 'POST',
+                    headers: { 
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json' 
+                    }
+                });
+                
+                const data = await response.json();
+
+                if (response.ok) {
+                    buttonElement.parentElement.querySelector('.status-text').textContent = 'Status: Delivered';
+                    buttonElement.parentElement.querySelector('.status-text').classList.remove('status-pending');
+                    buttonElement.parentElement.querySelector('.status-text').classList.add('status-delivered');
+                    buttonElement.remove(); // Remove the button after action
+                    document.getElementById('panelMessage').textContent = data.message;
+                } else {
+                    alert(data.message || 'Failed to update status.');
+                    buttonElement.disabled = false;
+                    buttonElement.textContent = 'Mark Delivered';
+                }
+            } catch (error) {
+                console.error('Error marking order as delivered:', error);
+                alert('Network error. Could not connect to update status.');
+                buttonElement.disabled = false;
+                buttonElement.textContent = 'Mark Delivered';
+            }
+        }
+
+
+        async function fetchOrders() {
+            const token = localStorage.getItem('token');
+            const orderList = document.getElementById('orderList');
+            const panelMessage = document.getElementById('panelMessage');
+            orderList.innerHTML = '<p>Loading...</p>';
+            panelMessage.textContent = 'Loading pending orders...';
+
+            try {
+                const response = await fetch('/api/delivery/orders/pending', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                const data = await response.json();
+
+                if (response.ok) {
+                    if (data.orders && data.orders.length > 0) {
+                        orderList.innerHTML = data.orders.map(order => `
+                            <div class="order-item">
+                                <strong>Order ID: ${order._id}</strong>
+                                <span>Customer: ${order.customerName}</span><br>
+                                <span>Address: ${order.deliveryAddress}</span><br>
+                                <span>Items: ${order.items.map(item => `${item.qty}x ${item.name}`).join(', ')}</span><br>
+                                <span class="status-text status-pending">Status: ${order.status}</span><br><br>
+                                <button onclick="updateOrderStatus('${order._id}', this)">Mark Delivered</button>
+                            </div>
+                        `).join('');
+                        panelMessage.textContent = `Successfully loaded ${data.orders.length} pending orders.`;
+                    } else {
+                        orderList.innerHTML = '<p>No pending orders at this time! 🎉</p>';
+                        panelMessage.textContent = 'No pending orders at this time!';
+                    }
+                } else {
+                    orderList.innerHTML = `<p style="color:red;">Error: ${data.message || 'Failed to fetch orders.'}</p>`;
+                    panelMessage.textContent = `Error: ${data.message || 'Failed to fetch orders.'}`;
+                }
+            } catch (error) {
+                console.error('Fetch orders error:', error);
+                orderList.innerHTML = '<p style="color:red;">Network error fetching orders. Check server connection.</p>';
+                panelMessage.textContent = 'Network error fetching orders.';
+            }
+        }
+    </script>
+</body>
+</html>

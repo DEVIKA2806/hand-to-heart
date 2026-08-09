@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hand2Heart - Lifestyle "Find your daily basic needs here".</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="products.css">
+</head>
+<body class="shop-body">
+
+  <header class="navbar">
+
+    <a href="shop-now.html" class="logo">
+        <span class="logo-dark">HAND to</span>
+        <span class="logo-green">
+            HEART
+            <i class="fa-solid fa-hand-holding-heart"></i>
+        </span>
+    </a>
+
+    <nav class="nav-items">
+        <ul>
+            <li><a href="shop-now.html">Home</a></li>
+            <li><a href="contact.html" onclick="openContact()">Contact Us</a></li>
+            <li><a href="#">Featured</a></li>
+        </ul>
+    </nav>
+
+    <div class="nav-right">
+
+        <div class="cart" onclick="window.location.href='cart.html'">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+
+        <!-- Guest -->
+        <button id="guest-btn" class="login-btn" onclick="openLogin()">
+            <i class="fa-solid fa-user"></i>
+        </button>
+
+        <!-- Logged In -->
+        <div id="user-menu-container" class="user-menu-wrap" style="display:none;">
+
+            <div class="user-avatar" onclick="toggleUserMenu()">
+                <span id="user-initial">U</span>
+            </div>
+
+            <div id="user-dropdown" class="profile-dropdown">
+
+                <div class="dropdown-header">
+                    <p id="menu-name">User Name</p>
+                    <small id="menu-email">user@email.com</small>
+                </div>
+
+                <ul>
+                    <li>
+                        <a href="profile.html">
+                            <i class="fa-solid fa-user"></i>
+                            My Profile
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="orders.html">
+                            <i class="fa-solid fa-box"></i>
+                            Order History
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li>
+                        <a href="#" onclick="logoutUser()">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <button class="seller-btn" onclick="openSeller()">
+            Join as Seller
+            <i class="fa-solid fa-handshake"></i>
+        </button>
+
+    </div>
+
+</header>
+
+  <div class="container mt-4 shop-search">
+    <input type="text" placeholder="Search for items...">
+    <button>Search</button>
+  </div>
+
+  <div id="loginModal" class="login-modal">
+        <div class="login-card">
+            <h3>Login</h3>
+            <input type="email" id="modalUsername" placeholder="Email" />
+            <input type="password" id="modalPassword" placeholder="Password" />
+            <div id="modalError" class="error"></div>
+            <button onclick="validateModalLogin()">Login</button>
+            
+            <button 
+                class="sign-in-btn" 
+                onclick="window.location.href='register.html'; closeLogin()"
+            >
+                Sign In
+            </button>
+            <button class="close-btn" onclick="closeLogin()">Close</button>
+        </div>
+    </div>
+    <div id="sellerModal" class="login-modal">
+        <div class="modal-card"></div>
+    </div>
+    
+    <div id="checkoutModal" class="login-modal">
+        <div class="login-card">
+            <div id="checkoutForm"></div>
+        </div>
+    </div>
+
+  <div class="container-fluid mt-4"> 
+    <div class="row">
+      
+      <aside class="col-md-3 p-3 bg-light rounded">
+        <h5>Filters</h5>
+
+        <h6>Size</h6>
+        <ul class="list-unstyled">
+          <li><input type="checkbox"> S</li>
+          <li><input type="checkbox"> M</li>
+          <li><input type="checkbox"> L</li>
+          <li><input type="checkbox"> XL</li>
+        </ul>
+
+        <h6>Craft</h6>
+        <ul class="list-unstyled">
+          <li><input type="checkbox"> Vedic Aroma</li>
+          <li><input type="checkbox"> Clay Craft</li>
+          <li><input type="checkbox"> Flavours of India</li>
+        </ul>
+
+        <h6>Price Range</h6>
+        <input type="range" class="form-range" min="1000" max="10000" step="500">
+
+        <h6>Product Type</h6>
+        <ul>
+          <li><input type="checkbox"> Saree</li>
+          <li><input type="checkbox"> Kurta</li>
+          <li><input type="checkbox"> Fabric</li>
+          <li><input type="checkbox"> Textile</li>
+          <li><input type="checkbox"> </li>
+        </ul>
+      </aside>
+
+      <main class="col-md-9">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="product-grid">
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/foi4-img.jpg" class="card-img-top" alt="Cumin Powder (Jeera Powder)">
+              <div class="card-body">
+                <h5 class="card-title">Cumin Powder (Jeera Powder)</h5>
+                <p class="card-text">Aromatic hand-churned cumin powder,adding rich aroma, and the true flavour of India.<br>250 gm</p>
+                <p class="price">₹199</p>
+                <button class="btn-green" data-product-id="cumin1" data-title="Cumin Powder" data-price="199" data-image-url="../assets/foi4-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/clay1-img.jpg" class="card-img-top" alt="Terracotta Plate Paint">
+                <div class="card-body">
+                  <h5 class="card-title">Terracotta Plate Paint</h5>
+                  <p class="card-text">Handmade with love, this terracotta plate is beautifully painted to add an earthy charm to your space.</p>
+                  <p class="price">₹199</p>
+                  <button class="btn-green" data-product-id="terracottaplate1" data-title="Terracotta Plate Paint" data-price="199" data-image-url="../assets/clay1-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/foi2-img.jpg" class="card-img-top" alt="Pottery Vase">
+                <div class="card-body">
+                  <h5 class="card-title">Red chilli(Laal Mirch)</h5>
+                  <p class="card-text">Hand-churned with love, this red chilli adds fiery flavor and authentic spice to every dish.<br>250 gm</p>
+                  <p class="price">₹299</p>
+                  <button class="btn-green" data-product-id="potteryvase1" data-title="Pottery Vase" data-price="699" data-image-url="../assets/clay4-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/sandal-img.jpg" class="card-img-top" alt="Sandalwood Agarbatti">
+                <div class="card-body">
+                  <h5 class="card-title">Sandalwood Agarbatti</h5>
+                  <p class="card-text">Experience the calming, woody scent of traditional sandalwood incense, ideal for creating a peaceful ambiance.</p>
+                  <p class="price">₹299</p>
+                  <button class="btn-green" data-product-id="sandalwoodagarbatti1" data-title="Sandalwood Agarbatti" data-price="299" data-image-url="../assets/sandal-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/foi1-img.jpg" class="card-img-top" alt="Turmeric">
+                <div class="card-body">
+                  <h5 class="card-title">Turmeric (Haldi)</h5>
+                  <p class="card-text">Pure, natural, and handmade turmeric that adds the true flavour of India to your meals.<br>250 gm</p>
+                  <p class="price">₹299</p>
+                  <button class="btn-green" data-product-id="turmeric1" data-title="Turmeric" data-price="299" data-image-url="../assets/foi1-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/rose-img.jpg" class="card-img-top" alt="Rose Agarbatti">
+              <div class="card-body">
+                <h5 class="card-title">Rose Agarbatti</h5>
+                <p class="card-text">Enjoy the serene and floral aroma of hand-rolled rose incense sticks.<br>(Pack of 10)</p>
+                <p class="price">₹299</p>
+                <button class="btn-green" data-product-id="roseagarbatti1" data-title="Rose Agarbatti" data-price="499" data-image-url="../assets/dhoop-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+              <div class="card h-100">
+                <img src="../assets/clay2-img.jpg" class="card-img-top" alt="Clay Kulhad">
+                <div class="card-body">
+                  <h5 class="card-title">Clay Kulhad</h5>
+                  <p class="card-text">Sip your favorite beverage in this traditional, handmade earthen cup for an authentic experience.</p>
+                  <p class="price">₹699</p>
+                  <button class="btn-green" data-product-id="claykulhad1" data-title="Clay Kulhad" data-price="699" data-image-url="../assets/clay2-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/dhoop2-img.jpg" class="card-img-top" alt="Dhoop Sticks">
+                <div class="card-body">
+                  <h5 class="card-title">Dhoop Sticks</h5>
+                  <p class="card-text">Enjoy a pure and potent aromatic experience with these traditional, slow-burning dhoop sticks.</p>
+                  <p class="price">₹199</p>
+                  <button class="btn-green" data-product-id="dhoopsticks1" data-title="Dhoop Sticks" data-price="199" data-image-url="../assets/dhoop2-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+          
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/clay3-img.jpg" class="card-img-top" alt="Earthen Pot">
+                <div class="card-body">
+                  <h5 class="card-title">Earthen Pot</h5>
+                  <p class="card-text">A beautifully handmade earthen pot, perfect for cooking traditional dishes or as rustic home decor.</p>
+                  <p class="price">₹499</p>
+                  <button class="btn-green" data-product-id="earthenpot1" data-title="Earthen Pot" data-price="499" data-image-url="../assets/clay3-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/dhoop1-img.jpg" class="card-img-top" alt="Dhoop">
+                <div class="card-body">
+                  <h5 class="card-title">Dhoop Batti</h5>
+                  <p class="card-text">Crafted with love, bringing sacred purity and divine energy.</p>
+                  <p class="price">₹199</p>
+                  <button class="btn-green" data-product-id="dhoop1" data-title="Dhoop" data-price="199" data-image-url="../assets/dhoop1-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>            
+
+          <div class="col">
+              <div class="card h-100">
+                <img src="../assets/lavender-img.jpg" class="card-img-top" alt="Lavender Agarbatti">
+                <div class="card-body">
+                  <h5 class="card-title">Lavender Agarbatti</h5>
+                  <p class="card-text">Soothing and floral fragrance of premium lavender incense, perfect for relaxation and stress relief.</p>
+                  <p class="price">₹299</p>
+                  <button class="btn-green" data-product-id="lavenderagarbatti1" data-title="Lavender Agarbatti" data-price="299" data-image-url="../assets/lavender-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/clay4-img.jpg" class="card-img-top" alt="Pottery Vase">
+                <div class="card-body">
+                  <h5 class="card-title">Pottery Vase</h5>
+                  <p class="card-text">A beautifully handmade pottery vase, adding a touch of rustic elegance to any room.</p>
+                  <p class="price">₹699</p>
+                  <button class="btn-green" data-product-id="potteryvase1" data-title="Pottery Vase" data-price="699" data-image-url="../assets/clay4-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/foi5-img.jpg" class="card-img-top" alt="Panch Phoron">
+                <div class="card-body">
+                  <h5 class="card-title">Panch Phoron</h5>
+                  <p class="card-text">A traditional Bengali five-spice blend, offering a complex, aromatic flavor to elevate your cooking.<br>100 gm</p>
+                  <p class="price">₹249</p>
+                  <button class="btn-green" data-product-id="panchphoron1" data-title="Panch Phoron" data-price="249" data-image-url="../assets/foi4-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/jasmine-img.jpg" class="card-img-top" alt="Jasmine Agarbatti">
+                <div class="card-body">
+                  <h5 class="card-title">Jasmine Agarbatti</h5>
+                  <p class="card-text">Fill your space with the rich, sweet, and exotic aroma of fresh jasmine blossoms.<br>(Pack of 10)</p>
+                  <p class="price">₹299</p>
+                  <button class="btn-green" data-product-id="jasmineagarbatti1" data-title="Jasmine Agarbatti" data-price="299" data-image-url="../assets/jasmine-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="../assets/foi3-img.jpg" class="card-img-top" alt="Coriander Powder (Dhania Powder)">
+                <div class="card-body">
+                  <h5 class="card-title">Coriander Powder (Dhania Powder)</h5>
+                  <p class="card-text">Aromatic hand-churned coriander powder, adding a mild, citrusy flavor to your culinary delights.<br>250 gm</p>
+                  <p class="price">₹149</p>
+                  <button class="btn-green" data-product-id="coriander1" data-title="Coriander Powder" data-price="149" data-image-url="../assets/foi3-img.jpg">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We aim to connect sellers and buyers through a simple and elegant platform. 
+                <a href="about.html">Learn more →</a>
+            </p>
+            </div>
+
+            <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#about-section">About Us</a></li>
+                <li><a href="shop-now.html">Shop Now</a></li>
+                <li><a href="#" onclick="openSeller()">Join as Seller</a></li>
+                <li><a href="#" onclick="openContact()">Contact Us</a></li>
+            </ul>
+            </div>
+
+            <div class="footer-section">
+            <h3>Stay Updated</h3>
+            <form id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+                <p id="newsletterMsg"></p>
+            </form>
+            </div>
+
+            <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+            </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Hand2Heart. All rights reserved.</p>
+        </div>
+    </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="script.js"></script>
+  <script>
+    const BACKEND_URL = '';
+    document.addEventListener('DOMContentLoaded', () => {
+      const productGrid = document.getElementById('product-grid');
+      
+      async function fetchAndRenderProducts(category) {
+          if (!productGrid) return;
+          try {
+              const response = await fetch(BACKEND_URL + `/api/product/${category}`);
+              const data = await response.json();
+
+              if (response.ok && data.products && data.products.length > 0) {
+                  data.products.forEach(product => {
+                      const productCardHtml = `
+                          <div class="col">
+                              <div class="card h-100">
+                                  <img src="/${product.imageUrl}" class="card-img-top" alt="${product.title}">
+                                  <div class="card-body">
+                                      <h5 class="card-title">${product.title} (New!)</h5>
+                                      <p class="card-text">${product.description || 'No description provided.'}</p>
+                                      <p class="price">₹${product.price.toFixed(2)}</p>
+                                      <button 
+                                          class="btn-green" 
+                                          data-product-id="${product._id}" 
+                                          data-title="${product.title}" 
+                                          data-price="${product.price}"
+                                          data-image-url="/${product.imageUrl.replace(/\\/g, '/')}"
+                                      >
+                                          Add to Cart
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+                      
+                      const tempDiv = document.createElement('div');
+                      tempDiv.innerHTML = productCardHtml.trim();
+                      const newProductCard = tempDiv.firstChild;
+
+                      // Randomly insert the new product card among the existing ones
+                      const existingCount = productGrid.children.length;
+                      const randomIndex = Math.floor(Math.random() * (existingCount + 1));
+
+                      if (existingCount > 0 && randomIndex < existingCount) {
+                          productGrid.insertBefore(newProductCard, productGrid.children[randomIndex]);
+                      } else {
+                          productGrid.appendChild(newProductCard);
+                      }
+                  });
+              } else if (response.ok && data.products && data.products.length === 0) {
+                    console.log('No dynamic products found for this category.');
+              } else {
+                  console.error('Failed to load dynamic products:', data.message || 'Server error.');
+              }
+          } catch (err) {
+              console.error('Network Error:', err);
+          }
+      }
+      
+      // Set the category based on the current page file name
+      const pageName = window.location.pathname.split('/').pop().split('.')[0];
+      if (['saree', 'artifacts', 'lifestyle'].includes(pageName)) {
+          fetchAndRenderProducts(pageName); 
+      }
+    });
+  </script>
+</body>
+</html>

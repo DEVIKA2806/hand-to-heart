@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand2Heart - Video Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="shop-body">
+
+    <div class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-dark">HAND to</span>
+            <span class="logo-green">
+                HEART
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </span>
+        </a>
+        <div class="nav-items">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>|</li>
+                <li><a href="shop-now.html">Items</a></li>
+                <li>|</li>
+                <li><a href="about.html">About Us</a></li>
+                <li>|</li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li>|</li>
+                <li><a href="#">Featured</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <div class="cart" onclick="window.location.href='cart.html'">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+            </div>
+            <div class="login">
+                <button class="login" onclick="openLogin()"><i class="fa-solid fa-user"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container video-chat-container">
+        <h1 class="text-center mb-4" style="color: #3A4D39;">Video Chat with Seller</h1>
+
+        <div class="video-wrapper">
+            <div class="video-player">
+                <video id="localVideo" autoplay playsinline muted></video>
+                <p>Your Video</p>
+            </div>
+            <div class="video-player">
+                <video id="remoteVideo" autoplay playsinline></video>
+                <p>Seller's/Peer's Video</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <h5 style="color: #3A4D39;">Controls</h5>
+            <button id="startBtn" class="btn btn-success">Start Camera</button>
+            <button id="createBtn" class="btn btn-primary" disabled>Create Room</button>
+            <button id="joinBtn" class="btn btn-info" disabled>Join Room</button>
+            <button id="hangupBtn" class="btn btn-danger" disabled>Hang Up</button>
+            
+            <div id="room-link-container" class="mt-2" style="display: none;">
+                <strong>Share this Room Link with your customer:</strong>
+                <div class="input-group">
+                    <input type="text" id="roomLink" class="form-control" readonly>
+                    <button class="btn btn-secondary" onclick="copyRoomLink()">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="signaling-status" class="alert alert-info" role="alert">
+            <strong>Status:</strong> Waiting to start...
+            <p class="small mb-0">
+                To connect, start your camera. If you are starting the call, click "Create Room" and share the page link. 
+                If you received a link, click "Join Room".
+            </p>
+        </div>
+    </div>
+
+    <div id="loginModal" class="login-modal">
+        <div class="login-card">
+            <h3>Login</h3>
+            <input type="email" id="modalUsername" placeholder="Email" />
+            <input type="password" id="modalPassword" placeholder="Password" />
+            <div id="modalError" class="error"></div>
+            <button onclick="validateModalLogin()">Login</button>
+            
+            <button class="sign-in-btn" onclick="window.location.href='register.html'; closeLogin()">Sign Up</button>
+            <button class="close-btn" onclick="closeLogin()">Close</button>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We aim to connect sellers and buyers through a simple and elegant platform. 
+                <a href="about.html">Learn more →</a>
+            </p>
+            </div>
+
+            <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="shop-now.html">Shop Now</a></li>
+                <li><a href="#" onclick="openSeller()">Join as Seller</a></li>
+                <li><a href="contact.html" onclick="openContact()">Contact Us</a></li>
+            </ul>
+            </div>
+
+            <div class="footer-section"> 
+            <h3>Stay Updated</h3>
+            <form id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+                <p id="newsletterMsg"></p>
+            </form>
+            </div>
+
+            <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+            </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Hand2Heart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+    <script src="video.js"></script>
+</body>
+</html>

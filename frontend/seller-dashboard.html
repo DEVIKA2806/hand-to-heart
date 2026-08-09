@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand2Heart - Seller Board</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="shop-body">
+    <div class="dashboard-container">
+        <p id="welcomeMessage" style="color: #3A4D39;"></p>
+        <p id="sellerStatus" style="color: orange;"></p>
+        <form id="productForm" class="product-form" enctype="multipart/form-data">
+            <h2>Add New Item for Sale</h2>
+            <label for="productName">Item Name</label>
+            <input type="text" id="productName" placeholder="e.g., Hand-painted Ceramic Vase" required>
+
+            <label for="productDesc">Description</label>
+            <textarea id="productDesc" placeholder="Describe materials, dimensions, and origin." rows="5" required></textarea>
+
+            <label for="productPrice">Price (₹)</label>
+            <p style="font-size: 0.8em; color: #6C757D; margin-top: 5px; margin-bottom: 5px;">
+                Expected Price Range: Saree: ₹1000-8000, Artifacts: ₹200-5000, Lifestyle: ₹10-1000.
+            </p>
+            <input type="number" id="productPrice" placeholder="0" step="1" min="1" required>
+            
+            <label for="productCategory">Category (Page to Display Item)</label>
+            <select id="productCategory" required>
+                <option value="">-- Select Product Type --</option>
+                <option value="saree">Saree Collection</option>
+                <option value="artifacts">Artifacts Collection</option>
+                <option value="lifestyle">Lifestyle Picks</option>
+            </select>
+            
+            <label for="productImage">Product Image (Max 5MB)</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required>
+            
+            <button type="submit">Add Item</button>
+        </form>
+
+        <div id="listingMsg" class="modal-message"></div>
+        <button onclick="logout()" style="background-color: #d9534f; margin-top: 20px;">Logout from Seller Account</button>
+        <button onclick="window.location.href='shop-now.html'" style="background-color: #3A4D39; margin-top: 10px;">Go back to main page</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const safeGetElement = (id) => document.getElementById(id);
+            const productForm = safeGetElement('productForm');
+            const user = JSON.parse(localStorage.getItem('user'));
+            const token = localStorage.getItem('token');
+            const sellerId = localStorage.getItem('currentSellerId'); 
+            const welcomeMessage = safeGetElement('welcomeMessage');
+            const sellerStatus = safeGetElement('sellerStatus');
+            
+            if (!token || !user || (user.role !== 'seller' && user.role !== 'admin')) {
+                alert('Access Denied. Please log in as a Seller.');
+                window.location.replace('shop-now.html'); 
+            } else {
+                welcomeMessage.textContent = `Welcome to your Seller Dashboard, ${user.name} (${user.email}).`;
+                if (user.status && user.status === 'pending') {
+                    sellerStatus.textContent = "Your account status is currently 'pending review'. You can add products, but listings may not appear immediately.";
+                } else {
+                    sellerStatus.textContent = "Your account is active. Start listing your products!";
+                    sellerStatus.style.color = 'green';
+                }
+            }
+
+            if (productForm) {
+                productForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const listingMsg = document.getElementById('listingMsg');
+                    const category = document.getElementById('productCategory').value;
+                    
+                    if (!sellerId) {
+                        listingMsg.textContent = "Error: Seller ID not found. Please log in again.";
+                        listingMsg.style.color = 'red';
+                        return;
+                    }
+                    
+                    const formData = new FormData();
+                    formData.append('sellerId', sellerId);
+                    formData.append('productName', document.getElementById('productName').value);
+                    formData.append('description', document.getElementById('productDesc').value);
+                    formData.append('price', document.getElementById('productPrice').value); 
+                    formData.append('category', category);
+
+                    if (document.getElementById('productImage').files.length > 0) {
+                        formData.append('productImage', document.getElementById('productImage').files[0]);
+                    } else {
+                         listingMsg.textContent = "Error: Please select a product image.";
+                         listingMsg.style.color = 'red';
+                         return;
+                    }
+                    
+                    listingMsg.textContent = `Adding product...`;
+                    listingMsg.style.color = 'orange';
+
+                    fetch('/api/product/add', { 
+                        method: 'POST',
+                        headers: { 
+                            'Authorization': `Bearer ${token}` 
+                        },
+                        body: formData 
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.product) {
+                            // FIX: Redirect and force the browser to reload from the server (not cache)
+                            const categoryFile = data.product.category + '.html'; 
+                            // Append a timestamp or cache-busting query parameter
+                            const redirectUrl = categoryFile + '?_=' + new Date().getTime();
+                            window.location.href = redirectUrl; 
+                            
+                        } else {
+                            listingMsg.textContent = data.message || "Failed to list product.";
+                            listingMsg.style.color = 'red';
+                            document.getElementById('productImage').value = '';
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Product listing fetch error:', err);
+                        listingMsg.textContent = "Network error. Could not reach server.";
+                        listingMsg.style.color = 'red';
+                        document.getElementById('productImage').value = '';
+                    });
+                });
+            }
+        });
+        
+        window.logout = window.logout || (() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            localStorage.removeItem('currentSellerId');
+            window.location.href = 'shop-now.html';
+        }); 
+    </script>
+</body>
+</html>

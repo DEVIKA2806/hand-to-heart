@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hand2Heart - Artifacts "Explore amazing handmade Artifacts"</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="products.css">
+</head>
+<body class="shop-body">
+
+  <header class="navbar">
+    <a href="shop-now.html" class="logo">
+        <span class="logo-dark">HAND to</span>
+        <span class="logo-green">
+            HEART
+            <i class="fa-solid fa-hand-holding-heart"></i>
+        </span>
+    </a>
+    <nav class="nav-items">
+        <ul>
+            <li><a href="shop-now.html">Home</a></li>
+            <li><a href="contact.html" onclick="openContact()">Contact Us</a></li>
+            <li><a href="#">Featured</a></li>
+        </ul>
+    </nav>
+    <div class="nav-right">
+        <div class="cart" onclick="window.location.href='cart.html'">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+        <!-- Guest -->
+        <button id="guest-btn" class="login-btn" onclick="openLogin()">
+            <i class="fa-solid fa-user"></i>
+        </button>
+        <!-- Logged In -->
+        <div id="user-menu-container" class="user-menu-wrap" style="display:none;">
+            <div class="user-avatar" onclick="toggleUserMenu()">
+                <span id="user-initial">U</span>
+            </div>
+            <div id="user-dropdown" class="profile-dropdown">
+                <div class="dropdown-header">
+                    <p id="menu-name">User Name</p>
+                    <small id="menu-email">user@email.com</small>
+                </div>
+                <ul>
+                    <li>
+                        <a href="profile.html">
+                            <i class="fa-solid fa-user"></i>
+                            My Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            <i class="fa-solid fa-box"></i>
+                            Order History
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#" onclick="logoutUser()">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button class="seller-btn" onclick="openSeller()">
+            Join as Seller
+            <i class="fa-solid fa-handshake"></i>
+        </button>
+    </div>
+  </header>
+
+
+  <div class="container mt-4 shop-search">
+    <input type="text" placeholder="Search for items...">
+    <button>Search</button>
+  </div>
+
+  <div id="loginModal" class="login-modal">
+        <div class="login-card">
+            <h3>Login</h3>
+            <input type="email" id="modalUsername" placeholder="Email" />
+            <input type="password" id="modalPassword" placeholder="Password" />
+            <div id="modalError" class="error"></div>
+            <button onclick="validateModalLogin()">Login</button>
+            
+            <button 
+                class="sign-in-btn" 
+                onclick="window.location.href='register.html'; closeLogin()"
+            >
+                Sign In
+            </button>
+            <button class="close-btn" onclick="closeLogin()">Close</button>
+        </div>
+    </div>
+    <div id="sellerModal" class="login-modal">
+        <div class="modal-card"></div>
+    </div>
+    
+    <div id="checkoutModal" class="login-modal">
+        <div class="login-card">
+            <div id="checkoutForm"></div>
+        </div>
+    </div>
+
+
+  <div class="container-fluid mt-4"> 
+    <div class="row">
+      
+      <aside class="col-md-3 p-3 bg-light rounded">
+        <h5>Filters</h5>
+
+        <h6>Size</h6>
+        <ul class="list-unstyled">
+          <li><input type="checkbox"> S</li>
+          <li><input type="checkbox"> M</li>
+          <li><input type="checkbox"> L</li>
+          <li><input type="checkbox"> XL</li>
+        </ul>
+
+        <h6>Craft</h6>
+        <ul class="list-unstyled">
+          <li><input type="checkbox"> Textile</li>
+          <li><input type="checkbox"> Glass DIY</li>
+          <li><input type="checkbox"> Wood Craft</li>
+          <li><input type="checkbox"> Seaside Craft</li>
+          <li><input type="checkbox"> Leather Craft</li>
+        </ul>
+
+        <h6>Price Range</h6>
+        <input type="range" class="form-range" min="1000" max="10000" step="500">
+
+        <h6>Product Type</h6>
+        <ul>
+          <li><input type="checkbox"> Saree</li>
+          <li><input type="checkbox"> Kurta</li>
+          <li><input type="checkbox"> Fabric</li>
+          <li><input type="checkbox"> Textile</li>
+          <li><input type="checkbox"> </li>
+        </ul>
+      </aside>
+
+      <main class="col-md-9">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="product-grid">
+          
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/wood1-img.jpg" class="card-img-top" alt="Handmade Wood Earrings">
+              <div class="card-body">
+                <h5 class="card-title">Wood Earrings</h5>
+                <p class="card-text">Charming wood earrings, handmade with love by differently-abled artisans.</p>
+                <p class="price">₹199</p>
+                <button class="btn-green" data-product-id="woodearrings1" data-title="Handmade Wood Earrings" data-price="199" data-image-url="../assets/wood1-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/seashell2-img.jpg" class="card-img-top" alt="Seashell Hanging">
+              <div class="card-body">
+                <h5 class="card-title">Seashell Hanging</h5>
+                <p class="card-text">A charming, handcrafted wall hanging made from natural seashells to bring a coastal vibe to your home.</p>
+                <p class="price">₹499</p>
+                <button class="btn-green" data-product-id="seashell2" data-title="Seashell Hanging" data-price="499" data-image-url="../assets/seashell2-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/leather2-img.jpg" class="card-img-top" alt="Leather Cross-body Bag">
+              <div class="card-body">
+                <h5 class="card-title">Leather Cross-body Bag</h5>
+                <p class="card-text">A stylish and functional bag, handcrafted from genuine leather for everyday use.</p>
+                <p class="price">₹999</p>
+                <button class="btn-green" data-product-id="leatherbag2" data-title="Leather Cross-body Bag" data-price="999" data-image-url="../assets/leather2-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/glass_diy1-img.jpg" class="card-img-top" alt="Mosaic Glass DIY Kit">
+              <div class="card-body">
+                <h5 class="card-title">Mosiac Glass DIY</h5>
+                <p class="card-text">Unleash your creativity with this all-in-one mosaic glass craft.</p>
+                <p class="price">₹399</p>
+                <button class="btn-green" data-product-id="glass1" data-title="Mosiac Glass DIY" data-price="399" data-image-url="../assets/glass_diy1-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/shawl1-img.jpg" class="card-img-top" alt="Jamawar Shawl">
+              <div class="card-body">
+                <h5 class="card-title">Shawl</h5>
+                <p class="card-text">An opulent Jamawar shawl, renowned for its intricate paisley motifs and rich texture.</p>
+                <p class="price">₹1,499</p>
+                <button class="btn-green" data-product-id="shawl1" data-title="Jamawar Shawl" data-price="1499" data-image-url="../assets/shawl1-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/seashell3-img.jpg" class="card-img-top" alt="Resin Beach Art">
+              <div class="card-body">
+                <h5 class="card-title">Resin Beach Art</h5>
+                <p class="card-text">A stunning piece of art capturing a serene beach scene in glossy, durable resin.</p>
+                <p class="price">₹599</p>
+                <button class="btn-green" data-product-id="resinart1" data-title="Resin Beach Art" data-price="599" data-image-url="../assets/seashell3-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/wood3-img.jpg" class="card-img-top" alt="Wooden Neckset">
+              <div class="card-body">
+                <h5 class="card-title">Wooden Neckset</h5>
+                <p class="card-text">A stunning, hand-carved wooden neckset that adds a touch of natural elegance to any outfit.</p>
+                <p class="price">₹999</p>
+                <button class="btn-green" data-product-id="woodneckset1" data-title="Wooden Neckset" data-price="999" data-image-url="../assets/wood3-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/seashell1-img.jpg" class="card-img-top" alt="Seashell Earrings">
+              <div class="card-body">
+                <h5 class="card-title">Seashell Earrings</h5>
+                <p class="card-text">Elegant earrings handcrafted from natural seashells, perfect for a beach-inspired look.</p>
+                <p class="price">₹699</p>
+                <button class="btn-green" data-product-id="seashell1" data-title="Seashell Earrings" data-price="699" data-image-url="../assets/seashell1-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/patchwork_bag-img.jpg" class="card-img-top" alt="Patchwork Bag">
+              <div class="card-body">
+                <h5 class="card-title">Patchwork Bag</h5>
+                <p class="card-text">A unique and eco-friendly tote bag, crafted from vibrant patchwork textiles.</p>
+                <p class="price">₹1,599</p>
+                <button class="btn-green" data-product-id="bag1" data-title="Patchwork Bag" data-price="1599" data-image-url="../assets/patchwork_bag-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/crocbag-img.jpg" class="card-img-top" alt="Folk art wood jewelry">
+              <div class="card-body">                               
+                <h5 class="card-title">Crochet Bag</h5>
+                <p class="card-text">A beautiful crochet bag, made with love by differently-abled artisans.</p>
+                <p class="price">₹999</p>
+                <button class="btn-green" data-product-id="crochetbag1" data-title="Crochet Bag" data-price="999" data-image-url="../assets/crochet_bag-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/leather1-img.jpg" class="card-img-top" alt="Leather Coin Pouch">
+              <div class="card-body">
+                <h5 class="card-title">Leather Coin Pouch</h5>
+                <p class="card-text">A compact and durable pouch, handcrafted from genuine leather to keep your coins secure.</p>
+                <p class="price">₹499</p>
+                <button class="btn-green" data-product-id="leatherpouch1" data-title="Leather Coin Pouch" data-price="499" data-image-url="../assets/leather1-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/shawl2-img.jpg" class="card-img-top" alt="Phulkari Shawl">
+              <div class="card-body">
+                <h5 class="card-title">Shawl</h5>
+                <p class="card-text">An exquisite Phulkari shawl featuring vibrant, traditional Punjabi embroidery.</p>
+                <p class="price">₹1,999</p>
+                <button class="btn-green" data-product-id="shawl2" data-title="Shawl" data-price="1999" data-image-url="../assets/shawl2-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/wallhanging-img.jpg" class="card-img-top" alt="Handcrafted Wall Hanging">
+              <div class="card-body">
+                <h5 class="card-title">Wall hanging</h5>
+                <p class="card-text">A beautifully handcrafted piece to add an artistic touch to your walls.</p>
+                <p class="price">₹569</p>
+                <button class="btn-green" data-product-id="wall-hanging1" data-title="Wall Hanging" data-price="569" data-image-url="../assets/wallhanging-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/wood2-img.jpg" class="card-img-top" alt="Wood Bead Purse">
+              <div class="card-body">
+                <h5 class="card-title">Wooden Bead Purse</h5>
+                <p class="card-text">A stylish and unique purse, beautifully crafted from smooth, polished wooden beads.</p>
+                <p class="price">₹799</p>
+                <button class="btn-green" data-product-id="woodpurse1" data-title="Wood Bead Purse" data-price="799" data-image-url="../assets/wood2-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/glass_diy2-img.jpg" class="card-img-top" alt="Jar Glass DIY">
+              <div class="card-body">
+                <h5 class="card-title">Jar Lamp</h5>
+                <p class="card-text">Enchanting jar lamp.</p>
+                <p class="price">₹699</p>
+                <button class="btn-green" data-product-id="lamp1" data-title="Jar Lamp" data-price="699" data-image-url="../assets/glass_diy2-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100">
+              <img src="../assets/wallhanging2-img.jpg" class="card-img-top" alt="Artisanal Wall Hanging">
+              <div class="card-body">
+                <h5 class="card-title">Wall hanging</h5>
+                <p class="card-text">Intricately designed wall art to elevate your home decor.</p>
+                <p class="price">₹499</p>
+                <button class="btn-green" data-product-id="wallhanging2" data-title="Wall Hanging" data-price="499" data-image-url="../assets/wallhanging2-img.jpg">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We aim to connect sellers and buyers through a simple and elegant platform. 
+                <a href="about.html">Learn more →</a>
+            </p>
+            </div>
+
+            <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#about-section">About Us</a></li>
+                <li><a href="shop-now.html">Shop Now</a></li>
+                <li><a href="#" onclick="openSeller()">Join as Seller</a></li>
+                <li><a href="#" onclick="openContact()">Contact Us</a></li>
+            </ul>
+            </div>
+
+            <div class="footer-section">
+            <h3>Stay Updated</h3>
+            <form id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+                <p id="newsletterMsg"></p>
+            </form>
+            </div>
+
+            <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-square-twitter"></i></a>
+            </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Hand2Heart. All rights reserved.</p>
+        </div>
+    </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="script.js"></script>
+  <script>
+    const BACKEND_URL = '';
+    document.addEventListener('DOMContentLoaded', () => {
+      const productGrid = document.getElementById('product-grid');
+      
+      async function fetchAndRenderProducts(category) {
+          if (!productGrid) return;
+          try {
+              const response = await fetch(BACKEND_URL + `/api/product/${category}`);
+              const data = await response.json();
+
+              if (response.ok && data.products && data.products.length > 0) {
+                  data.products.forEach(product => {
+                      const productCardHtml = `
+                          <div class="col">
+                              <div class="card h-100">
+                                  <img src="/${product.imageUrl}" class="card-img-top" alt="${product.title}">
+                                  <div class="card-body">
+                                      <h5 class="card-title">${product.title} (New!)</h5>
+                                      <p class="card-text">${product.description || 'No description provided.'}</p>
+                                      <p class="price">₹${product.price.toFixed(2)}</p>
+                                      <button 
+                                          class="btn-green" 
+                                          data-product-id="${product._id}" 
+                                          data-title="${product.title}" 
+                                          data-price="${product.price}"
+                                          data-image-url="/${product.imageUrl.replace(/\\/g, '/')}"
+                                      >
+                                          Add to Cart
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      `;
+                      
+                      const tempDiv = document.createElement('div');
+                      tempDiv.innerHTML = productCardHtml.trim();
+                      const newProductCard = tempDiv.firstChild;
+
+                      // Randomly insert the new product card among the existing ones
+                      const existingCount = productGrid.children.length;
+                      const randomIndex = Math.floor(Math.random() * (existingCount + 1));
+
+                      if (existingCount > 0 && randomIndex < existingCount) {
+                          productGrid.insertBefore(newProductCard, productGrid.children[randomIndex]);
+                      } else {
+                          productGrid.appendChild(newProductCard);
+                      }
+                  });
+              } else if (response.ok && data.products && data.products.length === 0) {
+                    console.log('No dynamic products found for this category.');
+              } else {
+                  console.error('Failed to load dynamic products:', data.message || 'Server error.');
+              }
+          } catch (err) {
+              console.error('Network Error:', err);
+          }
+      }
+      
+      // Set the category based on the current page file name
+      const pageName = window.location.pathname.split('/').pop().split('.')[0];
+      if (['saree', 'artifacts', 'lifestyle'].includes(pageName)) {
+          fetchAndRenderProducts(pageName); 
+      }
+    });
+  </script>
+</body>
+</html>
