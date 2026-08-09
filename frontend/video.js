@@ -23,7 +23,7 @@ let peerConnection;
 let currentRoom; 
 let isCaller = false;
 
-const socket = io(); 
+const socket = io("https://hand-to-heart-fgbw.onrender.com");
 
 const configuration = {
 iceServers: [

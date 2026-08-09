@@ -24,7 +24,13 @@ const resellRoutes = require('./routes/resell');
 // create app AFTER imports
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: "https://hand-to-heart-frontend.vercel.app",
+        methods: ["GET", "POST"],
+        credentials: true
+    }
+});
 const PORT = process.env.PORT || 5000;
 
 
