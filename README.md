@@ -22,7 +22,5 @@ The platform is built using a highly decoupled, service-oriented architecture de
 ---
 
 ## Advanced Engineering Features Implemented
-- **Granular Multi-Role Middleware:** Role-based access control (RBAC) securely gating endpoints across 4 distinct marketplace layers (Seller, Buyer, Reseller, Delivery).
 - **WebRTC Signaling Framework:** Asynchronous client-to-server events to exchange SDP offers/answers and ICE candidates, bypassing heavy server-side media loads.
-- **Reseller Commission & Inventory Logic:** Extensible schema design allowing downstream distribution tracking without mutating primary source catalog records.
 - **AI-Accelerated Development:** Built leveraging modern AI-assisted code pairing workflows; code audited manually to optimize loop efficiencies and database query times.
